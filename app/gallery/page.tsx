@@ -6,7 +6,7 @@ import { Sparkles, Heart, X, ZoomIn } from 'lucide-react';
 import Navbar from '@/app/components/Navbar.jsx';
 
 const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
 
   // Aquí pondrás tus imágenes
   const images = [
