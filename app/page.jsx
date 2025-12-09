@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sparkles, Heart, Palette, Mail, Instagram, DollarSign } from 'lucide-react';
+import Navbar from './components/Navbar';
 
 const HomePage = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -45,25 +46,26 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100 overflow-hidden">
+      <Navbar />
       {/* Elementos flotantes de fondo */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {floatingDots.map((dot, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-purple-400 rounded-full opacity-20"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${dot.left}%`,
+              top: `${dot.top}%`,
             }}
             animate={{
               y: [0, -30, 0],
-              x: [0, Math.random() * 20 - 10, 0],
+              x: [0, (i % 3) * 10 - 10, 0],
               scale: [1, 1.2, 1],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 3 + (i % 3),
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: (i % 5) * 0.4,
             }}
           />
         ))}
@@ -95,15 +97,19 @@ const HomePage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 bg-clip-text text-transparent">
-                  Chiwaru
-                </span>
-                <motion.span
-                  className="block text-4xl sm:text-5xl lg:text-6xl mt-2 text-gray-700"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                <motion.span 
+                  className="inline-block bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 bg-clip-text text-transparent"
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    rotate: [0, -2, 2, -2, 0]
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
                 >
-                  Arte Kawaii ✨
+                  ✨ Chiwaru ✨
                 </motion.span>
               </motion.h1>
 
@@ -162,7 +168,7 @@ const HomePage = () => {
                 transition={{ delay: 0.8 }}
               >
                 {[
-                  { number: "70+", label: "Comisiones" },
+                  { number: "500+", label: "Comisiones" },
                   { number: "100%", label: "Amor" },
                   { number: "∞", label: "Creatividad" }
                 ].map((stat, i) => (
@@ -291,7 +297,7 @@ const HomePage = () => {
               {
                 icon: <Palette className="w-12 h-12" />,
                 title: "Estilo Único",
-                description: "Arte kawaii personalizado que refleja tu personalidad",
+                description: "Arte  personalizado que refleja tu personalidad",
                 color: "from-purple-400 to-purple-600"
               },
               {
@@ -347,13 +353,13 @@ const HomePage = () => {
         >
           {/* Efectos de fondo */}
           <div className="absolute inset-0 opacity-20">
-            {[...Array(15)].map((_, i) => (
+            {finalSectionDots.map((dot, i) => (
               <motion.div
                 key={i}
                 className="absolute w-4 h-4 bg-white rounded-full"
                 style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
+                  left: `${dot.left}%`,
+                  top: `${dot.top}%`,
                 }}
                 animate={{
                   y: [0, -30, 0],
@@ -362,7 +368,7 @@ const HomePage = () => {
                 transition={{
                   duration: 3,
                   repeat: Infinity,
-                  delay: Math.random() * 2,
+                  delay: (i % 5) * 0.4,
                 }}
               />
             ))}
