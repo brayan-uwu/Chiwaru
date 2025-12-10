@@ -10,16 +10,16 @@ const Gallery = () => {
 
   // Aquí pondrás tus imágenes
   const images = [
-    { src: "/gallery.png", title: "Arte 1" },
-    { src: "/gallery1.png", title: "Arte 2" },
-    { src: "/gallery2.png", title: "Arte 3" },
-    { src: "/gallery3.png", title: "Arte 4" },
-    { src: "/gallery4.png", title: "Arte 5" },
-    { src: "/gallery5.png", title: "Arte 6" },
-    { src: "/gallery6.png", title: "Arte 7" },
-    { src: "/gallery7.png", title: "Arte 8" },
-    { src: "/gallery8.png", title: "Arte 9" },
-    { src: "/gallery9.png", title: "Arte 10" },
+    { src: "/gallery_11_11zon.png", title: "Arte 1" },
+    { src: "/gallery1_10_11zon.png", title: "Arte 2" },
+    { src: "/gallery2_9_11zon.png", title: "Arte 3" },
+    { src: "/gallery3_8_11zon.png", title: "Arte 4" },
+    { src: "/gallery4_7_11zon.png", title: "Arte 5" },
+    { src: "/gallery5_6_11zon.png", title: "Arte 6" },
+    { src: "/gallery6_5_11zon.png", title: "Arte 7" },
+    { src: "/gallery7_4_11zon.png", title: "Arte 8" },
+    { src: "/gallery8_3_11zon.png", title: "Arte 9" },
+    { src: "/gallery9_2_11zon.png", title: "Arte 10" },
     { src: "/chiwa.gif", title: "Arte 11" },
   ];
 

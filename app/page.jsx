@@ -84,8 +84,8 @@ const HomePage = () => {
             className="lg:hidden mb-8 flex justify-center"
           >
             <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl shadow-2xl overflow-hidden bg-white p-4">
-              <img 
-                src="/logo.png" 
+              <img
+                src="/chiwa.gif"
                 alt="Chiwaru Logo"
                 className="w-full h-full object-contain"
               />
@@ -217,8 +217,8 @@ const HomePage = () => {
               >
                 <div className="w-full h-[500px] rounded-[3rem] shadow-2xl relative overflow-hidden flex items-center justify-center bg-white">
                   {/* Logo / Imagen principal - CAMBIA "/logo.png" por la ruta de tu imagen */}
-                  <img 
-                    src="/logo.png" 
+                  <img
+                    src="/chiwa.gif"
                     alt="Chiwaru Logo"
                     className="w-full h-full object-contain p-8"
                   />
