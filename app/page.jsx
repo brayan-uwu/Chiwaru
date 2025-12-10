@@ -72,8 +72,25 @@ const HomePage = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 lg:pt-20">
         <div className="max-w-7xl mx-auto w-full">
+          
+          {/* Logo móvil - solo visible en móvil */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="lg:hidden mb-8 flex justify-center"
+          >
+            <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl shadow-2xl overflow-hidden bg-white p-4">
+              <img 
+                src="/logo.png" 
+                alt="Chiwaru Logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             
             {/* Texto Principal */}
@@ -92,7 +109,7 @@ const HomePage = () => {
               </motion.div>
 
               <motion.h1 
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6"
+                className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -114,7 +131,7 @@ const HomePage = () => {
               </motion.h1>
 
               <motion.p
-                className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed"
+                className="text-base sm:text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed px-4 sm:px-0"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
@@ -126,7 +143,7 @@ const HomePage = () => {
 
               {/* Botones CTA */}
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-4 sm:px-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
@@ -134,7 +151,7 @@ const HomePage = () => {
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(147, 51, 234, 0.3)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-bold text-lg overflow-hidden shadow-lg"
+                  className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-bold text-base sm:text-lg overflow-hidden shadow-lg"
                 >
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600"
@@ -151,7 +168,7 @@ const HomePage = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-white text-purple-600 rounded-full font-bold text-lg shadow-lg border-2 border-purple-200 hover:border-purple-400 transition-colors"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-purple-600 rounded-full font-bold text-base sm:text-lg shadow-lg border-2 border-purple-200 hover:border-purple-400 transition-colors"
                 >
                   <span className="flex items-center gap-2">
                     <Heart className="w-5 h-5" />
@@ -162,7 +179,7 @@ const HomePage = () => {
 
               {/* Stats */}
               <motion.div
-                className="mt-12 grid grid-cols-3 gap-6"
+                className="mt-12 grid grid-cols-3 gap-3 sm:gap-6 px-4 sm:px-0"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
@@ -177,8 +194,8 @@ const HomePage = () => {
                     className="text-center"
                     whileHover={{ scale: 1.1 }}
                   >
-                    <div className="text-3xl font-bold text-purple-600">{stat.number}</div>
-                    <div className="text-sm text-gray-600">{stat.label}</div>
+                    <div className="text-2xl sm:text-3xl font-bold text-purple-600">{stat.number}</div>
+                    <div className="text-xs sm:text-sm text-gray-600">{stat.label}</div>
                   </motion.div>
                 ))}
               </motion.div>
@@ -193,21 +210,13 @@ const HomePage = () => {
                 animate={floatingAnimation}
                 className="relative"
               >
-                <div className="w-full h-[500px] bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-[3rem] shadow-2xl relative overflow-hidden">
-                  {/* Placeholder para imagen */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      animate={{
-                        rotate: 360,
-                        scale: [1, 1.2, 1],
-                      }}
-                      transition={{
-                        rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                        scale: { duration: 3, repeat: Infinity }
-                      }}
-                      className="w-64 h-64 bg-white/20 rounded-full"
-                    />
-                  </div>
+                <div className="w-full h-[500px] rounded-[3rem] shadow-2xl relative overflow-hidden flex items-center justify-center bg-white">
+                  {/* Logo / Imagen principal - CAMBIA "/logo.png" por la ruta de tu imagen */}
+                  <img 
+                    src="/logo.png" 
+                    alt="Chiwaru Logo"
+                    className="w-full h-full object-contain p-8"
+                  />
                   
                   {/* Decoraciones */}
                   {[...Array(8)].map((_, i) => (
@@ -229,9 +238,9 @@ const HomePage = () => {
                       }}
                     >
                       {i % 2 === 0 ? (
-                        <Heart className="w-full h-full text-white/40" fill="currentColor" />
+                        <Heart className="w-full h-full text-purple-400/40" fill="currentColor" />
                       ) : (
-                        <Sparkles className="w-full h-full text-white/40" />
+                        <Sparkles className="w-full h-full text-pink-400/40" />
                       )}
                     </motion.div>
                   ))}
@@ -250,7 +259,7 @@ const HomePage = () => {
                     <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full" />
                     <div>
                       <div className="font-bold text-sm">Chibi Art</div>
-                      <div className="text-xs text-gray-500">Desde $15</div>
+                      <div className="text-xs text-gray-500">Desde $8</div>
                     </div>
                   </div>
                 </motion.div>
@@ -297,7 +306,7 @@ const HomePage = () => {
               {
                 icon: <Palette className="w-12 h-12" />,
                 title: "Estilo Único",
-                description: "Arte  personalizado que refleja tu personalidad",
+                description: "Arte personalizado que refleja tu personalidad",
                 color: "from-purple-400 to-purple-600"
               },
               {

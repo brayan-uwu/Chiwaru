@@ -9,6 +9,7 @@ const Commissions = () => {
   const commissions = [
     {
       title: "Chibis",
+      image: "/chivis.png", // ← PON AQUÍ LA RUTA DE TU IMAGEN
       icon: "🎨",
       prices: [
         { type: "icon", price: "$8", clp: "5,000 clp" },
@@ -18,6 +19,7 @@ const Commissions = () => {
     },
     {
       title: "SFW",
+      image: "/reference.png", // ← PON AQUÍ LA RUTA DE TU IMAGEN
       icon: "✨",
       prices: [
         { type: "icon", price: "$10", clp: "8,000 clp" },
@@ -28,6 +30,7 @@ const Commissions = () => {
     },
     {
       title: "NSFW",
+      image: "/nsfw.png", // ← PON AQUÍ LA RUTA DE TU IMAGEN
       note: "extra character 50%",
       icon: "💕",
       prices: [
@@ -114,21 +117,30 @@ const Commissions = () => {
                 {/* Imagen Placeholder */}
                 <div className={`h-80 bg-gradient-to-br ${commission.gradient} relative overflow-hidden flex items-center justify-center`}>
                   {/* Aquí irá tu imagen */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      animate={{
-                        scale: [1, 1.1, 1],
-                        rotate: [0, 5, -5, 0]
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                      }}
-                      className="text-8xl"
-                    >
-                      {commission.icon}
-                    </motion.div>
-                  </div>
+                  {/* Imagen (usa `public/` como raíz, p. ej. `/chivis.png`) */}
+                  {commission.image ? (
+                    <img
+                      src={commission.image}
+                      alt={commission.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.1, 1],
+                          rotate: [0, 5, -5, 0]
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                        }}
+                        className="text-8xl"
+                      >
+                        {commission.icon}
+                      </motion.div>
+                    </div>
+                  )}
                   
                   {/* Decoraciones flotantes */}
                   {[...Array(5)].map((_, i) => (
