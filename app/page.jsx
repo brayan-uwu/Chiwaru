@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sparkles, Heart, Palette, Mail, Instagram, DollarSign } from 'lucide-react';
+import Link from 'next/link';
 import Navbar from './components/Navbar';
 
 const HomePage = () => {
@@ -148,33 +149,37 @@ const HomePage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                <motion.button
-                  whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(147, 51, 234, 0.3)" }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-bold text-base sm:text-lg overflow-hidden shadow-lg"
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600"
-                    initial={{ x: "100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <span className="relative flex items-center gap-2">
-                    <Palette className="w-5 h-5" />
-                    Ver Comisiones
-                  </span>
-                </motion.button>
+                <Link href="/commissions">
+                  <motion.button
+                    whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(147, 51, 234, 0.3)" }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-bold text-base sm:text-lg overflow-hidden shadow-lg"
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600"
+                      initial={{ x: "100%" }}
+                      whileHover={{ x: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <span className="relative flex items-center gap-2">
+                      <Palette className="w-5 h-5" />
+                      Ver Comisiones
+                    </span>
+                  </motion.button>
+                </Link>
 
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-purple-600 rounded-full font-bold text-base sm:text-lg shadow-lg border-2 border-purple-200 hover:border-purple-400 transition-colors"
-                >
-                  <span className="flex items-center gap-2">
-                    <Heart className="w-5 h-5" />
-                    Galería
-                  </span>
-                </motion.button>
+                <Link href="/gallery">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-purple-600 rounded-full font-bold text-base sm:text-lg shadow-lg border-2 border-purple-200 hover:border-purple-400 transition-colors"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Heart className="w-5 h-5" />
+                      Galería
+                    </span>
+                  </motion.button>
+                </Link>
               </motion.div>
 
               {/* Stats */}
@@ -400,22 +405,16 @@ const HomePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="px-8 py-4 bg-white text-purple-600 rounded-full font-bold text-lg shadow-lg flex items-center gap-2"
-            >
-              <Mail className="w-5 h-5" />
-              Contactar
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="px-8 py-4 bg-pink-500 text-white rounded-full font-bold text-lg shadow-lg flex items-center gap-2"
-            >
-              <Instagram className="w-5 h-5" />
-              Instagram
-            </motion.button>
+            <a href="https://www.instagram.com/_chiwaru_?igsh=MWIzc215dGs0bTd0Yw==" target="_blank" rel="noopener noreferrer">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="px-8 py-4 bg-pink-500 text-white rounded-full font-bold text-lg shadow-lg flex items-center gap-2"
+              >
+                <Instagram className="w-5 h-5" />
+                Instagram
+              </motion.button>
+            </a>
           </motion.div>
         </motion.div>
       </section>
