@@ -20,7 +20,7 @@ const Gallery = () => {
     { src: "/gallery7.webp", title: "Arte 8" },
     { src: "/gallery8.webp", title: "Arte 9" },
     { src: "/gallery9.webp", title: "Arte 10" },
-    { src: "/chiwa.gif", title: "Arte 11" },
+    { src: "/gallery10.gif", title: "Arte 11" },
   ];
 
   const floatingDots = Array.from({ length: 15 }, (_, i) => ({

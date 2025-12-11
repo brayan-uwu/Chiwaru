@@ -9,7 +9,7 @@ const Commissions = () => {
   const commissions = [
     {
       title: "Chibis",
-      image: "/chivis.png", // ← PON AQUÍ LA RUTA DE TU IMAGEN
+      image: "/chivis1.webp", // ← PON AQUÍ LA RUTA DE TU IMAGEN
       icon: "🎨",
       prices: [
         { type: "icon", price: "$8", clp: "5,000 clp" },
@@ -19,7 +19,7 @@ const Commissions = () => {
     },
     {
       title: "SFW",
-      image: "/reference.png", // ← PON AQUÍ LA RUTA DE TU IMAGEN
+      image: "/reference1.webp", // ← PON AQUÍ LA RUTA DE TU IMAGEN
       icon: "✨",
       prices: [
         { type: "icon", price: "$10", clp: "8,000 clp" },
@@ -30,7 +30,7 @@ const Commissions = () => {
     },
     {
       title: "NSFW",
-      image: "/nsfw.png", // ← PON AQUÍ LA RUTA DE TU IMAGEN
+      image: "/nsfw1.webp", // ← PON AQUÍ LA RUTA DE TU IMAGEN
       note: "extra character 50%",
       icon: "💕",
       prices: [
