@@ -10,17 +10,17 @@ const Gallery = () => {
 
   // Aquí pondrás tus imágenes
   const images = [
-    { src: "/gallery.webp", title: "Arte 1" },
+    { src: "/gallery5.webp", title: "Arte 6" },
+    { src: "/gallery6.webp", title: "Arte 7" },
     { src: "/gallery1.webp", title: "Arte 2" },
     { src: "/gallery2.webp", title: "Arte 3" },
     { src: "/gallery3.webp", title: "Arte 4" },
     { src: "/gallery4.webp", title: "Arte 5" },
-    { src: "/gallery5.webp", title: "Arte 6" },
-    { src: "/gallery6.webp", title: "Arte 7" },
     { src: "/gallery7.webp", title: "Arte 8" },
     { src: "/gallery8.webp", title: "Arte 9" },
     { src: "/gallery9.webp", title: "Arte 10" },
     { src: "/gallery10.gif", title: "Arte 11" },
+    { src: "/gallery.webp", title: "Arte 1" },
   ];
 
   const floatingDots = Array.from({ length: 15 }, (_, i) => ({
