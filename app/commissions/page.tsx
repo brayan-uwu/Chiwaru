@@ -60,8 +60,11 @@ const Commissions = () => {
     // Mostrar alerta
     setShowAlert(true);
     
-    // Abrir Instagram INMEDIATAMENTE (para iOS)
-    window.open('https://www.instagram.com/direct/t/_chiwaru_/', '_blank');
+    // Link que abre DIRECTO a mensajes en móvil y desktop
+    const instagramDM = 'https://ig.me/m/_chiwaru_';
+    
+    // Abrir inmediatamente (funciona en iOS y Android)
+    window.open(instagramDM, '_blank');
     
     // Ocultar alerta después de 5 segundos
     setTimeout(() => {
@@ -273,9 +276,9 @@ const Commissions = () => {
           {(() => {
             const message = `Hola Chiwaru, quiero comisionar: ${selectedCommissions.map(s => `${s.type} de ${s.commission}`).join(", ")}. Descripción: ${description}`;
             return selectedCommissions.length > 0 || description ? (
-              <div className="mb-4 p-4 bg-purple-50 rounded-xl border border-purple-200">
-                <h3 className="font-bold mb-2 text-purple-800">Vista previa del mensaje:</h3>
-                <p className="text-gray-700">{message}</p>
+              <div className="mb-4 p-4 bg-purple-100 rounded-xl border-2 border-purple-300">
+                <h3 className="font-bold mb-2 text-purple-900">Vista previa del mensaje:</h3>
+                <p className="text-gray-900 font-medium">{message}</p>
               </div>
             ) : null;
           })()}
