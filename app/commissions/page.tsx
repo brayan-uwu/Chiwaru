@@ -1,15 +1,26 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Heart, DollarSign } from 'lucide-react';
-import Navbar from '@/app/components/Navbar.jsx';
+import { Sparkles, Heart, DollarSign, Send } from 'lucide-react';
+
+const Navbar = () => (
+  <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+    <div className="max-w-7xl mx-auto px-4 py-4">
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          Chiwaru
+        </h1>
+      </div>
+    </div>
+  </nav>
+);
 
 const Commissions = () => {
   const commissions = [
     {
       title: "Chibis",
-      image: "/chivis1.webp", // ← PON AQUÍ LA RUTA DE TU IMAGEN
+      image: "/chivis1.webp",
       icon: "🎨",
       prices: [
         { type: "icon", price: "$8", clp: "5,000 clp" },
@@ -19,7 +30,7 @@ const Commissions = () => {
     },
     {
       title: "SFW",
-      image: "/reference1.webp", // ← PON AQUÍ LA RUTA DE TU IMAGEN
+      image: "/reference1.webp",
       icon: "✨",
       prices: [
         { type: "icon", price: "$10", clp: "8,000 clp" },
@@ -30,7 +41,7 @@ const Commissions = () => {
     },
     {
       title: "NSFW",
-      image: "/nsfw1.webp", // ← PON AQUÍ LA RUTA DE TU IMAGEN
+      image: "/nsfw1.webp",
       note: "extra character 50%",
       icon: "💕",
       prices: [
@@ -42,14 +53,59 @@ const Commissions = () => {
     }
   ];
 
+  const [selectedCommissions, setSelectedCommissions] = useState<Array<{commission: string; type: string; price: string}>>([]);
+  const [description, setDescription] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+
   const floatingDots = Array.from({ length: 15 }, (_, i) => ({
     left: ((i * 37 + 23) % 100),
     top: ((i * 53 + 17) % 100),
   }));
 
+  const handleSendMessage = () => {
+    const message = `Hola Chiwaru, quiero comisionar: ${selectedCommissions.map(s => `${s.type} de ${s.commission}`).join(", ")}. Descripción: ${description}`;
+    
+    // Copiar al portapapeles
+    navigator.clipboard.writeText(message);
+    
+    // Mostrar alerta
+    setShowAlert(true);
+    
+    // Abrir Instagram después de 4 segundos
+    setTimeout(() => {
+      window.open('https://ig.me/m/_chiwaru_', '_blank');
+    }, 4000);
+    
+    // Ocultar alerta después de 7 segundos
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 7000);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100 overflow-hidden">
       <Navbar />
+      
+      {/* Alerta flotante */}
+      {showAlert && (
+        <motion.div
+          initial={{ opacity: 0, y: -20, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3"
+        >
+          <motion.div
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 0.6 }}
+          >
+            <Sparkles className="w-6 h-6" />
+          </motion.div>
+          <div>
+            <p className="font-bold text-lg">¡Mensaje copiado! ✨</p>
+            <p className="text-sm opacity-90">Abriendo Instagram... solo pégalo y envía 💕</p>
+          </div>
+        </motion.div>
+      )}
       
       <div className="py-20 px-4 sm:px-6 lg:px-8 relative">
       
@@ -114,10 +170,8 @@ const Commissions = () => {
             >
               <div className="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
                 
-                {/* Imagen Placeholder */}
+                {/* Imagen */}
                 <div className={`h-80 bg-gradient-to-br ${commission.gradient} relative overflow-hidden flex items-center justify-center`}>
-                  {/* Aquí irá tu imagen */}
-                  {/* Imagen (usa `public/` como raíz, p. ej. `/chivis.png`) */}
                   {commission.image ? (
                     <img
                       src={commission.image}
@@ -191,6 +245,18 @@ const Commissions = () => {
                       className="flex items-center justify-between p-3 bg-purple-50 rounded-xl border-2 border-purple-100 hover:border-purple-300 transition-colors"
                     >
                       <div className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          className="mr-2"
+                          onChange={(e) => {
+                            const item = { commission: commission.title, type: price.type, price: price.price };
+                            if (e.target.checked) {
+                              setSelectedCommissions([...selectedCommissions, item]);
+                            } else {
+                              setSelectedCommissions(selectedCommissions.filter(s => !(s.commission === item.commission && s.type === item.type)));
+                            }
+                          }}
+                        />
                         <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${commission.gradient}`} />
                         <span className="font-semibold text-gray-700 capitalize">{price.type}</span>
                       </div>
@@ -203,22 +269,49 @@ const Commissions = () => {
                     </motion.div>
                   ))}
                 </div>
-
-                {/* Botón de acción */}
-                <div className="p-6 pt-0">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`w-full py-3 bg-gradient-to-r ${commission.gradient} text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center gap-2`}
-                  >
-                    <DollarSign className="w-5 h-5" />
-                    Ordenar Ahora
-                  </motion.button>
-                </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Formulario de Comisión */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-3xl p-8 shadow-xl mb-16"
+        >
+          <h2 className="text-2xl font-bold mb-4">Detalles de tu Comisión</h2>
+          <p className="mb-4">Selecciona lo que quieres y describe tu idea.</p>
+
+          {(() => {
+            const message = `Hola Chiwaru, quiero comisionar: ${selectedCommissions.map(s => `${s.type} de ${s.commission}`).join(", ")}. Descripción: ${description}`;
+            return selectedCommissions.length > 0 || description ? (
+              <div className="mb-4 p-4 bg-purple-50 rounded-xl">
+                <h3 className="font-bold mb-2">Vista previa del mensaje:</h3>
+                <p>{message}</p>
+              </div>
+            ) : null;
+          })()}
+
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Describe tu comisión aquí..."
+            className="w-full p-4 border rounded-xl mb-4"
+            rows={4}
+          />
+
+          <motion.button
+            onClick={handleSendMessage}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center gap-2"
+            disabled={selectedCommissions.length === 0 && !description}
+          >
+            <Send className="w-5 h-5" />
+            Enviar Mensaje a Instagram
+          </motion.button>
+        </motion.div>
 
         {/* CTA Final */}
         <motion.div
