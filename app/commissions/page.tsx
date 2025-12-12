@@ -3,18 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Heart, DollarSign, Send } from 'lucide-react';
-
-const Navbar = () => (
-  <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
-    <div className="max-w-7xl mx-auto px-4 py-4">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-          Chiwaru
-        </h1>
-      </div>
-    </div>
-  </nav>
-);
+import Navbar from '@/app/components/Navbar.jsx';
 
 const Commissions = () => {
   const commissions = [
