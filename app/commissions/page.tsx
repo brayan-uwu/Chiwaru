@@ -60,15 +60,13 @@ const Commissions = () => {
     // Mostrar alerta
     setShowAlert(true);
     
-    // Abrir Instagram después de 4 segundos
-    setTimeout(() => {
-      window.open('https://ig.me/m/_chiwaru_', '_blank');
-    }, 4000);
+    // Abrir Instagram INMEDIATAMENTE (para iOS)
+    window.open('https://www.instagram.com/direct/t/_chiwaru_/', '_blank');
     
-    // Ocultar alerta después de 7 segundos
+    // Ocultar alerta después de 5 segundos
     setTimeout(() => {
       setShowAlert(false);
-    }, 7000);
+    }, 5000);
   };
 
   return (
@@ -275,9 +273,9 @@ const Commissions = () => {
           {(() => {
             const message = `Hola Chiwaru, quiero comisionar: ${selectedCommissions.map(s => `${s.type} de ${s.commission}`).join(", ")}. Descripción: ${description}`;
             return selectedCommissions.length > 0 || description ? (
-              <div className="mb-4 p-4 bg-purple-50 rounded-xl">
-                <h3 className="font-bold mb-2">Vista previa del mensaje:</h3>
-                <p>{message}</p>
+              <div className="mb-4 p-4 bg-purple-50 rounded-xl border border-purple-200">
+                <h3 className="font-bold mb-2 text-purple-800">Vista previa del mensaje:</h3>
+                <p className="text-gray-700">{message}</p>
               </div>
             ) : null;
           })()}
@@ -286,7 +284,7 @@ const Commissions = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Describe tu comisión aquí..."
-            className="w-full p-4 border rounded-xl mb-4"
+            className="w-full p-4 border-2 border-gray-300 rounded-xl mb-4 focus:border-purple-500 focus:outline-none"
             rows={4}
           />
 
@@ -308,18 +306,19 @@ const Commissions = () => {
           animate={{ opacity: 1, scale: 1 }}
           className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 rounded-3xl p-8 text-center text-white shadow-2xl relative overflow-hidden"
         >
-          <div className="absolute inset-0 opacity-20">
+          {/* Fondo con puntos más visibles en móvil */}
+          <div className="absolute inset-0">
             {[...Array(10)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-4 h-4 bg-white rounded-full"
+                className="absolute w-4 h-4 bg-white/30 rounded-full"
                 style={{
                   left: `${(i * 11) % 100}%`,
                   top: `${(i * 17) % 100}%`,
                 }}
                 animate={{
                   y: [0, -20, 0],
-                  opacity: [0.5, 1, 0.5],
+                  opacity: [0.3, 0.6, 0.3],
                 }}
                 transition={{
                   duration: 3,
